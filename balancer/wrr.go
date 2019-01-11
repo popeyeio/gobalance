@@ -41,7 +41,7 @@ type wrrPicker struct {
 
 var _ Picker = (*wrrPicker)(nil)
 
-func (p *wrrPicker) Pick() (instance.Instance, error) {
+func (p *wrrPicker) Pick(...string) (instance.Instance, error) {
 	if p.size <= 0 {
 		return nil, instance.ErrNoInstance
 	}

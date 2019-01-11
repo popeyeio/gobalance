@@ -12,6 +12,7 @@ const (
 	BalancerTypeWRR     = "WRR"
 	BalancerTypeRandom  = "RANDOM"
 	BalancerTypeWRandom = "WRANDOM"
+	BalancerTypeHash    = "HASH"
 )
 
 var (
@@ -24,7 +25,7 @@ type Balancer interface {
 }
 
 type Picker interface {
-	Pick() (instance.Instance, error)
+	Pick(...string) (instance.Instance, error)
 }
 
 func CreateBalancer(name string) (Balancer, error) {
@@ -37,6 +38,8 @@ func CreateBalancer(name string) (Balancer, error) {
 		return NewRandomBalancer(), nil
 	case BalancerTypeWRandom:
 		return NewWRandomBalancer(), nil
+	case BalancerTypeHash:
+		return NewHashBalancer(), nil
 	}
 	return nil, ErrNoBalancer
 }

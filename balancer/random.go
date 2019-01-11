@@ -32,7 +32,7 @@ type randomPicker struct {
 
 var _ Picker = (*randomPicker)(nil)
 
-func (p *randomPicker) Pick() (instance.Instance, error) {
+func (p *randomPicker) Pick(...string) (instance.Instance, error) {
 	if p.size <= 0 {
 		return nil, instance.ErrNoInstance
 	}

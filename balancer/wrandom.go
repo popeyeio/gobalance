@@ -37,7 +37,7 @@ type wrandomPicker struct {
 
 var _ Picker = (*wrandomPicker)(nil)
 
-func (p *wrandomPicker) Pick() (instance.Instance, error) {
+func (p *wrandomPicker) Pick(...string) (instance.Instance, error) {
 	if len(p.instances) > 0 {
 		w, n := uint32(0), fastrand.Uint32n(uint32(p.total))+1
 		for _, instance := range p.instances {

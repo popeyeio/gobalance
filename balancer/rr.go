@@ -34,7 +34,7 @@ type rrPicker struct {
 
 var _ Picker = (*rrPicker)(nil)
 
-func (p *rrPicker) Pick() (instance.Instance, error) {
+func (p *rrPicker) Pick(...string) (instance.Instance, error) {
 	if p.size <= 0 {
 		return nil, instance.ErrNoInstance
 	}
