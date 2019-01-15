@@ -13,6 +13,7 @@ const (
 	BalancerTypeRandom  = "RANDOM"
 	BalancerTypeWRandom = "WRANDOM"
 	BalancerTypeHash    = "HASH"
+	BalancerTypeCHash   = "CHASH"
 )
 
 var (
@@ -40,6 +41,8 @@ func CreateBalancer(name string) (Balancer, error) {
 		return NewWRandomBalancer(), nil
 	case BalancerTypeHash:
 		return NewHashBalancer(), nil
+	case BalancerTypeCHash:
+		return NewCHashBalancer(), nil
 	}
 	return nil, ErrNoBalancer
 }
