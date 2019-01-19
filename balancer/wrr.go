@@ -47,7 +47,6 @@ func (p *wrrPicker) Pick(...string) (instance.Instance, error) {
 	}
 
 	p.Lock()
-	defer p.Unlock()
 
 	max := 0
 	for i, ins := range p.instances {
@@ -57,5 +56,8 @@ func (p *wrrPicker) Pick(...string) (instance.Instance, error) {
 		}
 	}
 	p.weights[max] -= p.total
+
+	p.Unlock()
+
 	return p.instances[max], nil
 }
